@@ -1,0 +1,32 @@
+//***********************************************
+database MYSQL
+login="root"
+password="toor"
+SCHEMA = "can"
+//***********************************************
+
+CREATE TABLE messages  ( 
+	id      	int(11) AUTO_INCREMENT NOT NULL,
+	datetime	timestamp NOT NULL,
+	message 	varchar(3) NOT NULL,
+	size    	tinyint(4) NOT NULL,
+	d1      	int(11) NOT NULL,
+	d2      	int(11) NOT NULL,
+	d3      	int(11) NOT NULL,
+	d4      	int(11) NOT NULL,
+	d5      	int(11) NOT NULL,
+	d6      	int(11) NOT NULL,
+	d7      	int(11) NOT NULL,
+	d8      	int(11) NOT NULL,
+	comment 	varchar(32) NOT NULL,
+	PRIMARY KEY(id)
+)
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+GO
+CREATE INDEX message USING BTREE 
+	ON messages(message)
+GO
+CREATE INDEX ind_data USING BTREE 
+	ON messages(d1, d2, d3, d4, d5, d6, d7, d8)
+GO
