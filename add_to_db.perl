@@ -6,7 +6,7 @@ $dbh = DBI->connect("DBI:mysql:can", 'root','toor') or die "Error connecting to 
 
 $DEBUG = 1;
 
-system("MODE COM3:115200,N,8,1,P");
+system("MODE COM4:115200,N,8,1,P");
 
 # Загружаем данные из DB
 	if ($DEBUG > 0) {print "--------------------------------------------\n";}
@@ -37,14 +37,17 @@ system("MODE COM3:115200,N,8,1,P");
 		
 		
 while (1) {
-    open( FILE, "+>COM3" ) or die("Error reading file, stopped");
+    open( FILE, "+>COM4" ) or die("Error reading file, stopped");
     my ($buffer) = "";
 	my ($line) = "";
 	my ($i) = 0;
 	
+	
     while ( read( FILE, $buffer, 1 ) ) { #читаем 1 байт
 		if ($buffer eq "\n"){				# если это перенос строки, то надо обработать эту строку
+#			print ($line);
 			$line =~ m/S: (\w{3})       DLC: (\d)  Data: (\w{2}) (\w{2}) (\w{2}) (\w{2}) (\w{2}) (\w{2}) (\w{2}) (\w{2})/s;
+
 			
 			$message=$1;
 			
@@ -73,7 +76,7 @@ while (1) {
 							# 0 - значит, что этот бит всегда был = 0
 							# 1 - значит, что этот бит всегда был = 1
 							
-							if ($DEBUG > 1) {print " $message $byte $bit =  '$value' \t-->\t '$data{$message}{$byte}{$bit}';\n"; }
+#							if ($DEBUG > 1) {print " $message $byte $bit =  '$value' \t-->\t '$data{$message}{$byte}{$bit}';\n"; }
 							
 							# если данных о пакете этого типа нет в базе, то надо его сохранить
 							if ($data{$message}{$byte}{$bit} eq undef){

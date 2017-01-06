@@ -6,10 +6,10 @@ $messageId='000';
 my ($messageId) = @ARGV;
 
 
-system("MODE COM3:115200,N,8,1,P");
+system("MODE COM4:115200,N,8,1,P");
 
 while (1) {
-    open( FILE, "+>COM3" ) or die("Error reading file, stopped");
+    open( FILE, "+>COM4" ) or die("Error reading file, stopped");
     my ($buffer) = "";
 	my ($line) = "";
 	my ($i) = 0;

@@ -4,7 +4,7 @@ no warnings;
 
 $dbh = DBI->connect("DBI:mysql:can", 'root','toor') or die "Error connecting to database";
 
-system("MODE COM3:115200,N,8,1,P");
+system("MODE COM4:115200,N,8,1,P");
 
 # Загружаем данные из DB
 	if ($DEBUG > 0) {print "--------------------------------------------\n";}
@@ -34,7 +34,7 @@ system("MODE COM3:115200,N,8,1,P");
 # данные из DB загружены
 
 while (1) {
-    open( FILE, "+>COM3" ) or die("Error reading file, stopped");
+    open( FILE, "+>COM4" ) or die("Error reading file, stopped");
     my ($buffer) = "";
 	my ($line) = "";
 	my ($i) = 0;
